@@ -1,9 +1,13 @@
-[gd_resource type="Resource" script_class="Card" load_steps=2 format=3 uid="uid://bpk1sntb5gjs2"]
+[gd_resource type="Resource" load_steps=3 format=3 uid="uid://bpk1sntb5gjs2"]
 
-[ext_resource type="Script" uid="uid://by2udbdfmvg43" path="res://custom_resources/card.gd" id="1_wba1x"]
+[ext_resource type="Texture2D" uid="uid://ck1t4hdip6xrl" path="res://art/tile_0119.png" id="1_ungqh"]
+[ext_resource type="Script" uid="uid://c7q3uef5vkf1x" path="res://characters/warrior/cards/warrior_axe_attack.gd" id="2_ungqh"]
 
 [resource]
-script = ExtResource("1_wba1x")
+script = ExtResource("2_ungqh")
 id = "warrior_axe_attack"
 target = 1
+cost = 1
+icon = ExtResource("1_ungqh")
+tooltip_text = "Attacks an enemy for 6"
 metadata/_custom_type_script = "uid://by2udbdfmvg43"

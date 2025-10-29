@@ -4,9 +4,7 @@ extends CardState
 const MOUSE_Y_SNAPBACK_THRESHOLD := 138
  
 func enter() -> void:
-	card_ui.color.color = Color.RED
 	card_ui.targets.clear()
-	card_ui.state.text = "AIMING"
 	var offset = Vector2(card_ui.parent.size.x / 2, -card_ui.size.y / 2)
 	offset.x -= card_ui.size.x / 2
 	card_ui.animate_to_position(card_ui.parent.global_position + offset, 0.2)

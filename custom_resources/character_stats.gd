@@ -10,18 +10,17 @@ var deck: CardPile
 var discard: CardPile
 var draw_pile: CardPile
 
-
 func set_mana(value: int) -> void:
 	mana = value
 	stats_changed.emit()
 	
 	
 func reset_mana() -> void:
-	mana = max_mana
+	self.mana = max_mana
 	
 	
 func can_play_card(card: Card) -> bool:
-	return mana >= card.CONNECT_PERSIST
+	return mana >= card.cost
 	
 func create_instance() -> Resource:
 	var instance: CharacterStats = self.duplicate()

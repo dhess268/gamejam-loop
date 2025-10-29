@@ -9,11 +9,13 @@ func enter() -> void:
 	if ui_layer:
 		card_ui.reparent(ui_layer)
 
-	card_ui.color.color = Color.AQUAMARINE
-	card_ui.state.text = "DRAGGING"
 	minimum_drag_time_elapsed = false
+	Events.card_drag_started.emit(card_ui)
+
 	var threshold_timer := get_tree().create_timer(DRAG_MINIMUM_THRESHOLD, false)
 	threshold_timer.timeout.connect(func(): minimum_drag_time_elapsed = true)
+	card_ui.panel.set("theme_override_styles/panel", card_ui.DRAGGING_STYLEBOX)
+
 	
 func on_input(event: InputEvent) -> void:
 	var single_targeted_card := card_ui.card.is_single_targeted()
@@ -30,6 +32,10 @@ func on_input(event: InputEvent) -> void:
 
 	if cancel:
 		transition_requested.emit(self, CardState.State.BASE)
+
 	elif minimum_drag_time_elapsed and confirm:
 		get_viewport().set_input_as_handled()
 		transition_requested.emit(self, CardState.State.RELEASED)
+
+func exit():
+	Events.card_drag_ended.emit(card_ui)

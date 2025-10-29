@@ -27,6 +27,10 @@ window/size/window_width_override=1280
 window/size/window_height_override=720
 window/stretch/mode="viewport"
 
+[gui]
+
+theme/custom="uid://ci6fdrvspce8f"
+
 [input]
 
 left_mouse={
@@ -45,6 +49,7 @@ right_mouse={
 2d_physics/layer_1="card_target_selector"
 2d_physics/layer_2="card_drop_area"
 2d_physics/layer_3="Enemies"
+2d_physics/layer_4="segment"
 
 [rendering]
 
