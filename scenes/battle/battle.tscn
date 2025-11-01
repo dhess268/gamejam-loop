@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://3qumk87wkh7p"]
+[gd_scene load_steps=18 format=3 uid="uid://3qumk87wkh7p"]
 
 [ext_resource type="Texture2D" uid="uid://cp4iq5fd6j8be" path="res://art/background.png" id="1_7gynk"]
 [ext_resource type="Script" uid="uid://2h778r2syj4p" path="res://scenes/battle/battle.gd" id="1_icoan"]
@@ -14,6 +14,8 @@
 [ext_resource type="PackedScene" uid="uid://dapd64e64mio" path="res://scenes/ui/mana_ui.tscn" id="10_oiw7q"]
 [ext_resource type="PackedScene" uid="uid://cnmpt4upy30fq" path="res://scenes/ui/tooltip.tscn" id="11_fisqk"]
 [ext_resource type="Theme" uid="uid://ci6fdrvspce8f" path="res://main_theme.tres" id="12_mxe8n"]
+[ext_resource type="Script" uid="uid://ds6l6ltcww787" path="res://scenes/battle/time_sec_group.gd" id="15_n6gaa"]
+[ext_resource type="PackedScene" uid="uid://drt6qda2ukokx" path="res://scenes/battle/new_sec.tscn" id="15_t1kk3"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7gynk"]
 size = Vector2(256, 100)
@@ -96,4 +98,14 @@ grow_vertical = 0
 theme = ExtResource("12_mxe8n")
 text = "End Turn"
 
+[node name="Timer" type="Timer" parent="."]
+
+[node name="TimeSecGroup" type="Node2D" parent="."]
+position = Vector2(0, 1)
+script = ExtResource("15_n6gaa")
+
+[node name="NewSec" parent="TimeSecGroup" instance=ExtResource("15_t1kk3")]
+position = Vector2(125, 61)
+
 [connection signal="child_order_changed" from="EnemyHandler" to="." method="_on_enemy_handler_child_order_changed"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

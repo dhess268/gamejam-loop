@@ -2,7 +2,7 @@ class_name Card
 extends Resource
 
 enum Type {ATTACK, SKILL, POWER}
-enum Target {SELF, SINGLE_ENEMY, ALL_ENEMIES, EVERYONE  }
+enum Target {SELF, SINGLE_ENEMY, ALL_ENEMIES, EVERYONE, SEGMENT  }
 
 @export_group("Card Attributes")
 @export var id: String
@@ -30,6 +30,8 @@ func _get_target(targets: Array[Node]) -> Array[Node]:
 			return tree.get_nodes_in_group("player")
 		Target.ALL_ENEMIES:
 			return tree.get_nodes_in_group("enemies")
+		Target.SEGMENT:
+			return tree.get_nodes_in_group("segments")
 		Target.EVERYONE:
 			return tree.get_nodes_in_group("player") + tree.get_nodes_in_group("enemies")
 		_:

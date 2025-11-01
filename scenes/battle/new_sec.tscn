@@ -1,0 +1,31 @@
+[gd_scene load_steps=4 format=3 uid="uid://drt6qda2ukokx"]
+
+[ext_resource type="Script" uid="uid://b8yn4lxues6c6" path="res://scenes/battle/new_sec.gd" id="1_h1cn0"]
+[ext_resource type="Texture2D" uid="uid://bb3rcs5nqntir" path="res://art/arrow.png" id="2_77trv"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_t1kk3"]
+size = Vector2(10, 20)
+
+[node name="NewSec" type="Node2D"]
+script = ExtResource("1_h1cn0")
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_t1kk3")
+
+[node name="Panel" type="Panel" parent="Area2D"]
+offset_left = -5.0
+offset_top = -10.0
+offset_right = 5.0
+offset_bottom = 10.0
+mouse_filter = 1
+
+[node name="Arrow" type="Sprite2D" parent="Area2D"]
+visible = false
+position = Vector2(0, 16)
+texture = ExtResource("2_77trv")
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
+[connection signal="area_exited" from="Area2D" to="." method="_on_area_2d_area_exited"]

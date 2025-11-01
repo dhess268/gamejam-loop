@@ -90,6 +90,7 @@ func _on_card_drag_or_aiming_ended(_used_card: CardUi) -> void:
 	
 
 func _on_drop_point_detector_area_entered(area: Area2D) -> void:
+	print('drop point area entered')
 	if not targets.has(area):
 		targets.append(area)
 
@@ -101,6 +102,7 @@ func _on_drop_point_detector_area_exited(area: Area2D) -> void:
 
 
 func play() -> void:
+	# on this call, add this to a storage or something
 	if not card:
 		return
 	card.play(targets, char_stats)

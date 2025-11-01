@@ -7,7 +7,10 @@ extends Node2D
 @onready var battle_ui: BattleUI = $BattleUi as BattleUI
 @onready var enemy_handler: EnemyHandler = $EnemyHandler as EnemyHandler
 @onready var player: Player = $Player as Player
+@onready var timer: Timer = $Timer as Timer
 
+var turn = 1
+var MAX_TURN = 4
 
 func _ready() -> void:
 	var new_stats: CharacterStats = char_stats.create_instance()
@@ -23,6 +26,7 @@ func _ready() -> void:
 func start_battle(stats: CharacterStats) -> void:
 	enemy_handler.reset_enemy_actions()
 	player_handler.start_battle(stats)
+	timer.start()
 
 
 func _on_enemy_turn_ended() -> void:
@@ -33,3 +37,11 @@ func _on_enemy_turn_ended() -> void:
 func _on_enemy_handler_child_order_changed() -> void:
 	if enemy_handler.get_child_count() == 0:
 		print('You win!')
+
+
+func _on_timer_timeout() -> void:
+	if(turn >= MAX_TURN):
+		turn = 1
+	else:
+		turn += 1
+	Events.turn_change.emit(turn)

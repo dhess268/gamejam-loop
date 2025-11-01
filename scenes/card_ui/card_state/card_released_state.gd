@@ -6,7 +6,8 @@ func enter() -> void:
 	
 	if not card_ui.targets.is_empty():
 		Events.tooltip_hide_requested.emit()
-		card_ui.play()
+		Events.add_to_timeline.emit(card_ui)
+		#card_ui.play()
 		played = true
 		print("play card for target(s)", card_ui.targets)
 
